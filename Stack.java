@@ -23,20 +23,21 @@ class Stack{
 	}
 
 	public static void option(){
-		System.out.println("\n-------| Hello! Thank You for Looking out on my Propject | --------");
+		System.out.println("\n-------| Hello! Thank You for Looking out on my Propject | -------|");
 		System.out.println("[1] push");
 		System.out.println("[2] pop");
 		System.out.println("[3] peek");
-		System.out.println("[4] Display");
-		System.out.println("[5] Show Odd Numbers");
-		System.out.println("[6] Show Even Numbers");
-		System.out.println("[7] Show Prime Numbers");
-		System.out.println("[8] Show Total");
-		System.out.println("[9] Exit");
-		System.out.println("-------------------------------------------------------------------");
-
+		System.out.println("[4] Show Odd Numbers");
+		System.out.println("[5] Show Even Numbers");
+		System.out.println("[6] Show Total");
+		System.out.println("[7] Exit");
+		System.out.println("--------------------------------------------------------------------|");
+		System.out.println("--------------------|Your Stacked Arrayt|---------------------------|");
+		display();
+		System.out.println("--------------------------------------------------------------------|");
 		System.out.print("Enter number: ");
 		int choice = input.nextInt();
+		System.out.println("--------------------------------------------------------------------|");
 
 		//Choices
 		switch(choice){
@@ -59,37 +60,31 @@ class Stack{
 				peek();
 				break;
 			case 4:
-				System.out.println("Displaying your Data\n");
-				display();
-				break;
-			case 5:
 				System.out.println("Show Odd Numbers\n");
 				Odd();
 				break;
-			case 6:
+			case 5:
 				System.out.println("Show Even Numbers\n");
 				Even();
 				break;
-			case 7:
-				System.out.println("Show Prime Numbers\n");
-				Prime();
-				break;
-			case 8:
-				System.out.println("Show Total Numbers\n");
+			case 6:
+				System.out.println("Show Total\n");
 				Total();
 				break;
-			case 9:
+			case 7:
 				System.out.println("Exiting Program Goodbye!.....");
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Invalid");
-				option();
-
+				System.out.println("Invalid. Exiting Program Goodbye!.....");
+				System.exit(0);
 		}
 	}
 
+
+	//PUSH
 	public static int push(int num){
+
 		//Expanding Array
 		int[] newStack = new int[stack.length + 1];
 
@@ -98,18 +93,22 @@ class Stack{
 		    newStack[i] = stack[i];
 		}
 
-		//Storing in array
+		//Storing number in an index
 		newStack[newStack.length - 1] = num;
 
-		//Stores the temporary values into the permanent container
+		//Stores the temporary container into the permanent container
     	stack = newStack;
 
 		//Going back to options
 		option();
 		return num;
+
 	}
 
+
+	//POP
 	public static int pop(int num) {
+
 		//Check the array if empty
 	    if (stack.length == 0) {
 	        System.out.println("Stack is empty!\n");
@@ -137,26 +136,33 @@ class Stack{
 	    option();
 	    return num;
 	}
+
+	//PEEK
 	public static void peek(){
 		//shows the last index
 		System.out.println("[" + stack[stack.length - 1] + "]");
 		option();
 	}
 
+	//DISPLAY
 	public static void display(){
-		//sorting the array(reverse)
-		//new array for sorting
-		int[] sorted = new int[stack.length];
 
-		//Reverse Sorting
-		for (int i = 0; i < stack.length; i++) {
-			sorted[i] = stack[stack.length - 1 - i];
-			System.out.println("[" + sorted[i] + "]");
+		if(stack.length == 0){
+			System.out.println("[No Array at the Meantime]");
+		} else {
+			//sorting the array in (reverse)
+			//new array for sorting
+			int[] sorted = new int[stack.length];
+
+			//Reverse Sorting
+			for (int i = 0; i < stack.length; i++) {
+				sorted[i] = stack[stack.length - 1 - i];
+				System.out.println("[" + sorted[i] + "]");
+			}
 		}
-		option();
 	}
 
-	//Showing odd numbers
+	//ODD
 	public static void Odd(){
 		if(stack.length == 0){
 			System.out.println("Please insert some value(s) first!");
@@ -176,7 +182,10 @@ class Stack{
 		option();
 	}
 
+
+	//EVENE
 	public static void Even(){
+		//Look for any value first
 		if(stack.length == 0){
 			System.out.println("Please insert some value(s) first!");
 			option();
@@ -195,29 +204,8 @@ class Stack{
 		option();
 	}
 
-	public static void Prime() {
-    	for (int j = 0; j < stack.length; j++) {
-        	int num = stack[j];
-        	boolean isPrime = true; // assume it's prime until proven otherwise
 
-        	if (num <= 1) {
-        	    isPrime = false;
-        	} else {
-        	    for (int i = 2; i * i <= num; i++) {
-                	if (num % i == 0) {
-                    	isPrime = false;
-                    	break; // found a divisor, stop checking
-                	}
-            	}
-        	}
-			//print prime numbers
-        	if (isPrime) {
-            	System.out.println("[" + num + "] : is prime");
-        	}
-    	}
-    	option(); // call your next method
-	}
-
+	//TOTAL
 	public static void Total(){
 		int total = 0;
 

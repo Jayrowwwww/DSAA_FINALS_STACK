@@ -4,6 +4,9 @@ class Stack{
 
 	static Scanner input = new Scanner(System.in);
 	static int[] stack = new int[0];
+	static final String RESET = "\u001B[0m";
+	static final String RED = "\u001B[31m";
+	static final String CYAN = "\u001B[36m";
 
 	public static void main(String[] args){
 		System.out.println("Welcome to my Simple Stack Structured Array System");
@@ -111,7 +114,7 @@ class Stack{
 
 		//Check the array if empty
 	    if (stack.length == 0) {
-	        System.out.println("Stack is empty!\n");
+	        System.out.println(CYAN + "Stack is empty!\n" + RESET);
 	        option();
 	    }
 
@@ -121,7 +124,7 @@ class Stack{
 		//should be functioned first before removing elements
 	    for( int j = 1; j <= num; j++){
 			poppedNum = stack[stack.length - j];
-			System.out.println("You've Popped: " + poppedNum);
+			System.out.println(RED + "You've Popped: " + poppedNum + RESET);
 		}
 
 		//New array to remove elements
@@ -140,15 +143,16 @@ class Stack{
 	//PEEK
 	public static void peek(){
 		//shows the last index
-		System.out.println("[" + stack[stack.length - 1] + "]");
+		System.out.println(RED + "[" + stack[stack.length - 1] + "]" + RESET);
 		option();
 	}
+
 
 	//DISPLAY
 	public static void display(){
 
 		if(stack.length == 0){
-			System.out.println("[No Array at the Meantime]");
+			System.out.println(CYAN + "[No Array at the Meantime]" + RESET);
 		} else {
 			//sorting the array in (reverse)
 			//new array for sorting
@@ -157,7 +161,7 @@ class Stack{
 			//Reverse Sorting
 			for (int i = 0; i < stack.length; i++) {
 				sorted[i] = stack[stack.length - 1 - i];
-				System.out.println("[" + sorted[i] + "]");
+				System.out.println(RED + "[" + sorted[i] + "]" + RESET);
 			}
 		}
 	}
@@ -165,7 +169,7 @@ class Stack{
 	//ODD
 	public static void Odd(){
 		if(stack.length == 0){
-			System.out.println("Please insert some value(s) first!");
+			System.out.println(CYAN + "Please insert some value(s) first!" + RESET);
 			option();
 		}
 
@@ -175,7 +179,7 @@ class Stack{
 			int num = stack[i];
 			//checking if it is odd
 			if(num % 2 != 0){
-				System.out.println("[" + num + "] : is Odd");
+				System.out.println(RED + "[" + num + "]" + RESET + ": is Odd");
 			}
 		}
 		//return to option
@@ -187,7 +191,7 @@ class Stack{
 	public static void Even(){
 		//Look for any value first
 		if(stack.length == 0){
-			System.out.println("Please insert some value(s) first!");
+			System.out.println(CYAN + "Please insert some value(s) first!" + RESET);
 			option();
 		}
 
@@ -197,7 +201,7 @@ class Stack{
 			int num = stack[i];
 			//checking if it is even
 			if(num % 2 == 0){
-				System.out.println("[" + num + "] : is Even");
+				System.out.println(RED + "[" + num + "]" + RESET + ": is Even");
 			}
 		}
 		//return to option
@@ -213,7 +217,7 @@ class Stack{
 			total = total + stack[i];
 		}
 
-		System.out.println("Total is: [" + total + "]\n");
+		System.out.println(RED + "Total is: [" + total + "]\n" + RESET);
 		option();
 	}
 }

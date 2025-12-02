@@ -4,14 +4,12 @@ class Stack{
 
 	static Scanner input = new Scanner(System.in);
 	static int[] stack = new int[0];
-	static final String RESET = "\u001B[0m";
-	static final String RED = "\u001B[31m";
-	static final String CYAN = "\u001B[36m";
 
 	public static void main(String[] args){
+		System.out.println("Hello I am Jerreh Romer Salera from BSIT 2A");
 		System.out.println("Welcome to my Simple Stack Structured Array System");
-		System.out.println("Hello I am Jerreh Romer Salera from BSIT 2A\n");
-		System.out.print("Would you like to coninue?(Y/N): ");
+		System.out.println("Would you like to see my Project?\n");
+		System.out.print("Press Y to continue(Y/N): ");
 		String choose = input.nextLine();
 
 		//Handles continuing options
@@ -26,61 +24,69 @@ class Stack{
 	}
 
 	public static void option(){
-		System.out.println("\n-------| Hello! Thank You for Looking out on my Propject | -------|");
-		System.out.println("[1] push");
-		System.out.println("[2] pop");
-		System.out.println("[3] peek");
-		System.out.println("[4] Show Odd Numbers");
-		System.out.println("[5] Show Even Numbers");
-		System.out.println("[6] Show Total");
-		System.out.println("[7] Exit");
-		System.out.println("--------------------------------------------------------------------|");
-		System.out.println("--------------------|Your Stacked Arrayt|---------------------------|");
-		display();
-		System.out.println("--------------------------------------------------------------------|");
-		System.out.print("Enter number: ");
-		int choice = input.nextInt();
-		System.out.println("--------------------------------------------------------------------|");
+		while(true){
+			System.out.println("\n--------------------------------------------------------------------|");
+			System.out.println("---------| Hello! Thank You for Looking out on my Propject | -------|");
+			System.out.println("[1] push");
+			System.out.println("[2] pop");
+			System.out.println("[3] peek");
+			System.out.println("[4] Show Odd Numbers");
+			System.out.println("[5] Show Even Numbers");
+			System.out.println("[6] Show Total");
+			System.out.println("[7] Exit");
+			System.out.println("--------------------------------------------------------------------|");
+			System.out.println("--------------------|Your Stacked Arrayt|---------------------------|");
+			display();
+			System.out.println("--------------------------------------------------------------------|");
+			System.out.print("Enter number: ");
+			int choice = input.nextInt();
+			System.out.println("--------------------------------------------------------------------|");
 
-		//Choices
-		switch(choice){
-			case 1:
-				System.out.println("You choose push\n");
+			//Choices
+			switch(choice){
+				case 1:
+					System.out.println("You choose push\n");
 
-				System.out.print("Enter number to push: ");
-				int number = input.nextInt();
-				push(number);
-				break;
-			case 2:
-				System.out.println("You choose pop\n");
+					System.out.print("Enter number to push: ");
+					int number = input.nextInt();
+					push(number);
+					break;
+				case 2:
+					System.out.println("You choose pop\n");
 
-				System.out.print("How many number you want to remove?: ");
-				int remove = input.nextInt();
-				pop(remove);
-				break;
-			case 3:
-				System.out.println("You choose peek\n");
-				peek();
-				break;
-			case 4:
-				System.out.println("Show Odd Numbers\n");
-				Odd();
-				break;
-			case 5:
-				System.out.println("Show Even Numbers\n");
-				Even();
-				break;
-			case 6:
-				System.out.println("Show Total\n");
-				Total();
-				break;
-			case 7:
-				System.out.println("Exiting Program Goodbye!.....");
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Invalid. Exiting Program Goodbye!.....");
-				System.exit(0);
+					System.out.print("How many number you want to remove?: ");
+					int remove = input.nextInt();
+
+					if(remove > stack.length){
+						System.out.println("Please input valid number");
+						break;
+					}
+
+					pop(remove);
+					break;
+				case 3:
+					System.out.println("You choose peek\n");
+					peek();
+					break;
+				case 4:
+					System.out.println("Show Odd Numbers\n");
+					Odd();
+					break;
+				case 5:
+					System.out.println("Show Even Numbers\n");
+					Even();
+					break;
+				case 6:
+					System.out.println("Show Total\n");
+					Total();
+					break;
+				case 7:
+					System.out.println("Exiting Program Goodbye!.....");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Invalid. Please Input number 1-7, Thank You.");
+			}
 		}
 	}
 
@@ -88,10 +94,10 @@ class Stack{
 	//PUSH
 	public static int push(int num){
 
-		//Expanding Array
+		//Expanding the Array
 		int[] newStack = new int[stack.length + 1];
 
-		//Storing same array elements to temporary container
+		//Storing the same array elements to the temporary container
 		for (int i = 0; i < stack.length; i++) {
 		    newStack[i] = stack[i];
 		}
@@ -102,8 +108,6 @@ class Stack{
 		//Stores the temporary container into the permanent container
     	stack = newStack;
 
-		//Going back to options
-		option();
 		return num;
 
 	}
@@ -112,19 +116,13 @@ class Stack{
 	//POP
 	public static int pop(int num) {
 
-		//Check the array if empty
-	    if (stack.length == 0) {
-	        System.out.println(CYAN + "Stack is empty!\n" + RESET);
-	        option();
-	    }
-
 		//Shows Popped Numberr
 	    int poppedNum;
 
 		//should be functioned first before removing elements
 	    for( int j = 1; j <= num; j++){
 			poppedNum = stack[stack.length - j];
-			System.out.println(RED + "You've Popped: " + poppedNum + RESET);
+			System.out.println("You've Popped: " + poppedNum);
 		}
 
 		//New array to remove elements
@@ -136,15 +134,13 @@ class Stack{
 
 	    stack = newStack;
 
-	    option();
 	    return num;
 	}
 
 	//PEEK
 	public static void peek(){
 		//shows the last index
-		System.out.println(RED + "[" + stack[stack.length - 1] + "]" + RESET);
-		option();
+		System.out.println("[" + stack[stack.length - 1] + "]");
 	}
 
 
@@ -152,24 +148,24 @@ class Stack{
 	public static void display(){
 
 		if(stack.length == 0){
-			System.out.println(CYAN + "[No Array at the Meantime]" + RESET);
-		} else {
-			//sorting the array in (reverse)
-			//new array for sorting
-			int[] sorted = new int[stack.length];
+			System.out.println("[No Array at the Meantime]");
+		}
 
-			//Reverse Sorting
-			for (int i = 0; i < stack.length; i++) {
-				sorted[i] = stack[stack.length - 1 - i];
-				System.out.println(RED + "[" + sorted[i] + "]" + RESET);
-			}
+		//sorting the array in (reverse)
+		//new array for sorting
+		int[] sorted = new int[stack.length];
+
+		//Reverse Sorting
+		for (int i = 0; i < stack.length; i++) {
+			sorted[i] = stack[stack.length - 1 - i];
+			System.out.println("[" + sorted[i] + "]");
 		}
 	}
 
 	//ODD
 	public static void Odd(){
 		if(stack.length == 0){
-			System.out.println(CYAN + "Please insert some value(s) first!" + RESET);
+			System.out.println("Please insert some value(s) first!");
 			option();
 		}
 
@@ -179,11 +175,9 @@ class Stack{
 			int num = stack[i];
 			//checking if it is odd
 			if(num % 2 != 0){
-				System.out.println(RED + "[" + num + "]" + RESET + ": is Odd");
+				System.out.println("[" + num + "]: is Odd");
 			}
 		}
-		//return to option
-		option();
 	}
 
 
@@ -191,8 +185,7 @@ class Stack{
 	public static void Even(){
 		//Look for any value first
 		if(stack.length == 0){
-			System.out.println(CYAN + "Please insert some value(s) first!" + RESET);
-			option();
+			System.out.println("Please insert some value(s) first!");
 		}
 
 		//searching for every index
@@ -201,11 +194,9 @@ class Stack{
 			int num = stack[i];
 			//checking if it is even
 			if(num % 2 == 0){
-				System.out.println(RED + "[" + num + "]" + RESET + ": is Even");
+				System.out.println("[" + num + "]: is Even");
 			}
 		}
-		//return to option
-		option();
 	}
 
 
@@ -217,7 +208,6 @@ class Stack{
 			total = total + stack[i];
 		}
 
-		System.out.println(RED + "Total is: [" + total + "]\n" + RESET);
-		option();
+		System.out.println("Total is: [" + total + "]\n");
 	}
 }
